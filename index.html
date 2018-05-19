@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>タイプラ</title>
+	<script src="./typewriter.js"></script>
+</head>
+<body>
+	<input id="text" value="リーチ目を盗め！！">
+	<button id="start" type="button">タイプラ</button>
+	<script>
+		document.body.querySelector('#start').addEventListener('click',()=>{
+			var {value} = document.body.querySelector('#text');
+			Typewriter(value,{
+				speed:150,
+				delay:3000
+			});
+		})
+	</script>
+</body>
+</html>
