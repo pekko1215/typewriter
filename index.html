@@ -2,17 +2,36 @@
 <html>
 <head>
 	<title>タイプラ</title>
+	<script type="text/javascript" src="https://rawgit.com/pekko1215/getter7/master/originjs/Sounder.js"></script>
 	<script src="./typewriter.js"></script>
 </head>
 <body>
-	<input id="text" value="リーチ目を盗め！！">
+	<input id="text" value="おやつは引き出しに<br>宿題やってから<br>食べること！">
 	<button id="start" type="button">タイプラ</button>
+	<div style="width:500px;height:500px;" id="view"></div>
 	<script>
+
+		var sounder =  new Sounder;
+
+		sounder.addFile('type.mp3','type');
+		sounder.addFile('title.wav','title');
+
+		sounder.loadFile();
+
 		document.body.querySelector('#start').addEventListener('click',()=>{
 			var {value} = document.body.querySelector('#text');
 			Typewriter(value,{
 				speed:150,
-				delay:3000
+				delay:5000,
+			}).change((t)=>{
+				console.log("change")
+				t!="\n"&&sounder.playSound('type');
+			}).title(()=>{
+				sounder.playSound('title');
+				console.log("title")
+			}).finish((e)=>{
+				console.log("finish");
+				e.parentNode.removeChild(e)
 			});
 		})
 	</script>
